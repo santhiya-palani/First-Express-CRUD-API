@@ -44,7 +44,32 @@ app.get("/",(req,res) => {
    }
         res.json(results[0]);
     });
+    });
+
+    // 3. post endpoint - inserting a record
+
+    app.post ('/employees', (req,res)  => {
+    const id = parseInt(req.body.id, 10);
+    const {name,role} = req.body;
+
+if (!Number.isInteger(id)) {
+    return res.status(400).json({ error: 'Employee ID must be an integer' });
+}
+      if (!id || !name || !role) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  if (typeof name !== 'string' || typeof role !== 'string') {
+    return res.status(400).json({ error: 'Name and role must be strings' });
+  }
+    const sql = 'insert into employees (id,name,role) values (?,?,?)' ;
+        db.query (sql,[id,name,role],(err,results) =>{
+        if (err){
+            console.error ('Error in inserting Employee:',err);
+            return res.status(500).json({error:'Database error'});
+        }
+    
+      res.status(201).json({ Message: 'Employee added',employee: { id, name, role } });
 
 });
-
-app.listen(3005, () => console.log("Server running at http://localhost:3005"));
+    });
+app.listen(3008, () => console.log("Server running at http://localhost:3008"));
