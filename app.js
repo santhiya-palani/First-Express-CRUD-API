@@ -33,8 +33,13 @@ app.get("/",(req,res) => {
     // 2-get endpoint- To retrieve a single employee
 
     app.get ('/employees/:id', (req,res)  => {
-    const id = req.params.id;
-        db.query ('select * from employees where id=?',[id],(err,results) =>{
+    const idparam = req.params.id;
+    const id = Number(idparam);
+
+  if (!Number.isInteger(id)) {
+  return res.status(400).json({ error: 'Invalid ID: must be an integer' });
+}
+          db.query ('select * from employees where id=?',[id],(err,results) =>{
         if (err){
             console.error ('Couldnt retrieve emp data with given id',err);
             return res.status(500).json({error:'Database error'});
@@ -46,11 +51,11 @@ app.get("/",(req,res) => {
     });
     });
 
-    // 3. post endpoint - inserting a record
+    // 3. post endpoint - To insert a record
 
     app.post ('/employees', (req,res)  => {
-    const id = parseInt(req.body.id, 10);
-    const {name,role} = req.body;
+    //const id = parseInt(req.body.id, 10);
+    const {id,name,role} = req.body;
 
 if (!Number.isInteger(id)) {
     return res.status(400).json({ error: 'Employee ID must be an integer' });
@@ -69,6 +74,29 @@ if (!Number.isInteger(id)) {
         }
     
       res.status(201).json({ Message: 'Employee added',employee: { id, name, role } });
+
+});
+    });
+
+// Delete 
+
+      app.delete ('/employees/:id', (req,res)  => {
+  const idParam = req.params.id;
+  const id = Number(idParam);
+
+if (!Number.isInteger(id)) {
+    return res.status(400).json({ error: 'Employee ID must be an integer' });
+}
+    const sql = 'delete from employees where id = ?' ;
+        db.query (sql,[id],(err,results) =>{
+        if (err){
+            console.error ('Error in deleting Employee:',err);
+            return res.status(500).json({error:'Database error'});
+        }
+     if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Employee not found' });
+    }
+      res.status (201).json({ Message: `Employee deleted with the ID ${id} succesfully`});
 
 });
     });
