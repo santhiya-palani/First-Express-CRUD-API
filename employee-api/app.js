@@ -10,8 +10,11 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
-//basic Route
+
+//basic Routegit add app.js
+
 
 app.get("/",(req,res) => {
     res.send ("Welcome to CRUD API");
@@ -121,7 +124,7 @@ if (!Number.isInteger(id)) {
 
 //5. Delete endpoint
 
-      app.delete ('/employees/:id', (req,res)  => {
+  app.delete ('/employees/:id', (req,res)  => {
   const idParam = req.params.id;
   const id = Number(idParam);
 
@@ -144,24 +147,27 @@ if (!Number.isInteger(id)) {
 
 //6. Deleting Multiple rows.
 
+app.use(express.json())
 
 app.delete ('/employees/bulk', (req,res)  => {
+  
+const ids = req.body; //multiple id's so differenciating here with the name.
 
-    const ids = req.body; //multiple id's so differnciating here with the name.
-
-    if(!Array.isArray(ids) || ids.length === 0 ) {
-    return res.status(400).json({ error: 'Request body cannot be empty'});
+if(!Array.isArray(ids) || ids.length === 0 ) {
+ return res.status(400).json({ error: 'Request body cannot be empty'});
     }
-
- for (let i = 0; i < ids.length; i++) {
+    
+for (let i = 0; i < ids.length; i++) {
 const id = ids[i]; // for each index of an array.
+console.log(`Checking ID at index ${i}:`, id, typeof id);
 if (!Number.isInteger(id)) {
     return res.status(400).json({ error: 'Invalid index.Id must be an integer' });
 }
  }
+
 const sql = 'delete from employees where id IN (?)';
 
-  db.query(sql,[ids], (err,results) => {
+  db.query(sql,ids, (err,results) => {
     if (err) {
       console.error('Error deleting employees:', err);
       return res.status(500).json({ error: 'Database error' });
