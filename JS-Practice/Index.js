@@ -1,7 +1,9 @@
 //console.log ("Good Morning");
 
-//Exercise 1- Simple calculator
 /*
+
+//Exercise 1- Simple calculator
+
 function calculator (a,b,operation){
    
     if(!Number.isInteger(a) || !Number.isInteger(b)){
@@ -29,12 +31,14 @@ function calculator (a,b,operation){
   }  
 }
 
-console.log (calculator ('a','40','*'));
+console.log (calculator (60,40,'*'));
+
 
 /*
 
+/*
 //Execrcise-2 -Temperature Converter
-/*
+
 function celsiustofaran (Celsius) {
 if (typeof(Celsius) !== 'number') {
 return 'error:enter a numeric value for conversion';
@@ -50,7 +54,7 @@ function farantocelsius(faran){
 
 console.log(farantocelsius(78));
 
-*/
+/*
 
 //Exercise -3 - Odd or even checker
 /*
@@ -266,10 +270,11 @@ function StrReverse (str) {
     }
 
     let revstr = '';
-    for (let i = str.length-1; i>=0;i--) { //string index starts from 0
+    let l = str.length-1;
+    for (let i = l; i>=0;i--) { //string index starts from 0
         revstr += str[i];
     }
-    return revstr;
+    return revstr; /after the loop stops final string would be returned.
 }
 
 console.log(StrReverse (12345));
@@ -286,7 +291,8 @@ function DigitSum (num){
     }
     let sum = 0;
     const strnum = num.toString();
-   for (let i =0; i< strnum.length ;i++) {
+    l= strnum.length;
+   for (let i =0; i< l ;i++) {
     sum += Number(strnum[i]);
    }
  return sum;
@@ -294,8 +300,10 @@ function DigitSum (num){
 
 console.log(DigitSum (123456));
 
-/*
+*/
 
+
+/*
 // Squareroot Checker
 
 function Sqrt (num){
@@ -334,7 +342,27 @@ return age;
 console.log (ageCalc('1990-09-09')); //datestring
 
 */
+/*
 
+//Age Calculator -2 -approx age
+
+function ageCalc(birthDate){
+
+    const today= new Date();
+    const birth =new Date(birthDate);
+
+    if (isNaN (birth)) { //Checking if the date object is invlaid
+        return 'Error: Input a valid date';
+    }
+
+let diffinms = today- birth; //diff in milliseconds
+let age = diffinms/ (1000*60*60*24*365.25); //year
+return age;
+}
+
+console.log (ageCalc('1990-09-09')); //datestring
+
+*/
 /*
 //day of week
 
@@ -355,9 +383,14 @@ console.log(dayFinder(''));
 
 /*
 
+
+
 //Weekend Checker -getday return values 0 & 6 are weekends.
 
-function weekendFinder (datestring)
+//JS calls date objects .toString() method to make it human-readable.
+
+
+function weekendFinder (datestring) 
 {
 
 const date = new Date (datestring);
@@ -479,12 +512,17 @@ console.log(string.length);
 console.log(string.toLowerCase());
 console.log (string.toUpperCase());
 console.log (string.split(' '));
+//console.log (string.reverse); //wouldnt work as string doesnt have reverse. only arrays have it
 console.log (string.indexOf('h'));
-console.log (string.slice(0,7));
+console.log (string.lastIndexOf('y'));
+console.log (string.slice(0,7)); // enof position is excluded.
 console.log (string.trim());
+console.log (string.includes('lo')); //returns boolean
+console.log (string.search('lo')); // returns position
+console.log (string.charAt('10'));
 
-*/
 /*
+
 //swapping 2 numbers without 3rd variable.
 
     let a = 20;
@@ -498,19 +536,19 @@ a= a-b;
 console.log ('after swap',a,b);
 
 */
+
 /*
+//largest of given numbers
 
-//largest of 3 numbers
-
-function largestFinder (a,b,c){
+function largestFinder (a,b,c,d,e,f){
     
-    let largenum = Math.max (a,b,c);
+    let largenum = Math.max (a,b,c,d,e,f);
 return largenum;
 }
-console.log (largestFinder(10,50,3000));
+console.log (largestFinder(10,50,300,0,78,56789));
+
 
 */
-
 //Without builtin Method
 
 /*
@@ -531,6 +569,7 @@ console.log(largest(34,43,87));
 */
 
 /*
+
 // employee table creating using array and methods.
 
 //creating base employee table.
@@ -563,10 +602,21 @@ addEmployeeFirst(6,'Anushya','DERM',88000);
 //Removes First element from array.
 
 employee.shift()
-console.table (employee);
+
+//reversing & sorting
+
+console.table (employee.reverse());
+console.table (employee.sort());
+
+
+//The difference between toSorted() and sort() is that the first method creates a new array, 
+// keeping the original array unchanged, while the last method alters the original array.
+
+const sorted =employee.toSorted();
+console.log (sorted);
+console.log (employee);
 
 */
-
 /*
 //accepting user input
 
@@ -641,3 +691,398 @@ console.log(extensionOfFile('index.txt.js'));
 
 */
 
+/*
+//Multiplication Table
+
+
+function multiplicationTable (n,upto) {
+
+    if (typeof n !== 'number' || typeof upto !== 'number' || n===0 || upto === 0) {
+
+        console.error('Give valid inputs to generate table');
+    }
+    let table =[];
+    for (let i =1 ; i<= upto; i++){
+    table.push ({multiplicand: n, multiplier: i, product: n * i});
+    }
+    return table;
+}
+
+console.log(multiplicationTable (10,10));
+
+*/
+
+/*
+//Vowels counter
+
+function vowelFinder(str){
+    if (typeof str !== 'string'){
+        console.error ('enter a valid string to process');
+        return //if invlaid execution can stop here.
+    }
+
+    const vowels ='aeiou';
+    let string = str.toLowerCase();
+    let l = string.length;
+    let count = 0;  //initializing the counter with 0.
+
+    for (let i=0 ; i<l; i++){
+    if (vowels.includes(string[i])){
+   count++;
+    }  
+    }
+    return `the count of vowels in given string are ${count}`;
+}
+
+console.log (vowelFinder('I would lIke to visIt parIs!'));
+//console.log (vowelFinder(12345));
+console.log (vowelFinder("I LOVE ROSES"));
+
+/*
+// factorial series
+
+function factorial (n){
+    if (typeof n !== 'number'){
+        return 'invalid input';
+    }
+     let result = 1;
+     let series =[];
+    if (n===0 || n===1){ //base case
+        return 1;
+    }
+
+    for (let i =2; i<=n; i++){
+        result = result * i;
+        series.push(result);
+    }
+return series;
+ 
+}
+
+console.log(factorial(10));
+
+*/
+
+/*
+//number to words
+
+function numToWords (n){
+    if (typeof n !== 'number'|| n>9 ||n ===null){
+       return  'enter valid number.'
+    }
+    const numbers = {
+        0: 'zero',
+        1: 'one',
+        2: 'two',
+        3: 'three',
+        4: 'four',
+        5: 'five',
+        6: 'six',
+        7: 'seven',
+        8: 'eight',
+        9: 'nine'
+    }
+ return numbers[n];
+    }
+console.log(numToWords(8));
+
+*/
+
+/*
+
+// Arrow function 
+
+let numbers = [1, 2, 3, 4];
+
+//foreach = for every item in Array.
+//Return value: Always undefined (it does not return a new array).
+
+numbers.forEach(num => {  //num call back fucntion recvs current element of the array
+  console.log(num * 2); // prints 2, 4, 6, 8
+});
+
+console.log(numbers); 
+
+*/
+
+/*
+
+//Grade distribution
+
+function gradeDis (marks){
+
+    //counter initialization - as Object.
+
+    let reportCard = {A :0, B:0 ,C :0, D:0, F:0};
+
+    
+//for of loop. - iterates over every item in the array
+// each value in the marks array= mark
+for (let mark of marks) {
+
+    if (mark>=90 && mark<=100){
+        reportCard.A++;
+    }
+     else if (mark>=80 && mark<=89){
+        reportCard.B++;
+    }
+     else if (mark>=70&& mark<=79){
+         reportCard.C++;
+     }
+     else if (mark>=60 && mark<=69){
+        reportCard.D++;
+    }
+    else if (mark>=0 && mark<=59){
+         reportCard.F++;
+    }
+    else {
+        console.log ('Invalid Score')
+    }
+}
+return reportCard;
+}
+
+console.log(gradeDis([98,99,56,45,74,83,89,16,101,48]));
+
+*/
+
+/*
+function validatePassword(password) {
+
+  if (typeof password !== 'string') {
+    return 'Error: Password must be a string';
+  }
+
+  if (password.length < 8) {
+    return 'Error: Password must be at least 8 characters long';
+  }
+
+  // regex method use slashes and within square brackets the searcht terms.
+  const hasNumber = /[0-9]/.test(password); //.test returns true or false.
+  if (!hasNumber) {
+    return 'Error: Password must contain at least one number';
+  }
+
+  const hasUppercase = /[A-Z]/.test(password);
+  if (!hasUppercase) {
+    return 'Error: Password must contain at least one uppercase letter';
+  }
+
+  return true;
+}
+
+console.log (validatePassword('AKJURNHMBJ23'));
+
+*/
+
+/*
+//difference between dates
+
+// A Date object in JavaScript is essentially a wrapper around a timestamp. for precision.
+// JavaScript counts months from 0 to 11: January = 0.December = 11.
+// JavaScript stores dates as number of milliseconds since January 01, 1970.
+
+function dateDifference(date1,date2){
+const d1 = new Date(date1);  // date strings are converted as date objects. strings are easy toread so this conversion works the best.
+const d2 = new Date(date2);
+if (isNaN(d1) || isNaN(d2)) {
+    return 'Error: Invalid date format';
+  }
+
+const diff = Math.abs (d2-d1);  //in milliseconds
+const diffdays= diff / (1000 * 60 * 60 * 24); //converting it to a day
+return (`Difference between given dates - ${diffdays}`);
+}
+
+console.log (dateDifference ( '', '2025-11-28'));
+
+*/
+/*
+
+// 24 to 12 hour time format
+
+function timeConversion(time) {
+
+    let [H,M] = time.split(':').map(Number); //split is string function and tine is about numbers.
+
+    if (isNaN(H) || isNaN(M) || H < 0 || H > 23 || M < 0 || M > 59) {
+        return 'enter valid time';
+    }
+    let x = H >= 12 ?'PM': 'AM';
+H = H % 12 ; //reminder is hours
+ if (H === 0) H = 12 //12 AM or 12 Pm case handling
+return  (`${H}: ${M} ${x}`);
+}
+
+console.log (timeConversion('19:22'));
+
+*/
+
+/*
+//Number methods
+
+let X = 875.785;
+
+
+X= X.toPrecision(1);
+console.log(X);
+
+X= X.toFixed(2);
+console.log(X);
+
+X= X.toString();
+console.log(X);
+*/
+/*
+
+// Time untill event
+
+function timeUntillEvent(date) {
+    const futureDate = new Date (date);
+    const today = new Date();
+
+      if (isNaN(futureDate)) {
+    return "Error: Invalid date format";
+      }
+    const diffinms = futureDate - today;
+    const diffdays = diffinms / (1000*60*60*24);
+  return diffdays;
+}
+console.log (timeUntillEvent('2025-12-31'));
+*/
+
+/*
+
+//Remove Extra Spaces (5 points)
+
+function removeSpaces(str){
+
+if (typeof str !== 'string'){
+return 'error give valid string to process';
+}                                     
+//let cleanedstr = str.trim(); cleans only beginning and ending,
+
+let cleanedstr1= str.replace(/\s+/g, ' '). trim(); //replacing the spaces with single space.
+let cleanedstr2= str.replace(/\s+/g, '');  //to remove all the spaces
+return {With_spaces :cleanedstr1, without_spaces: cleanedstr2} ;
+}
+
+console.log (removeSpaces('  hello  hiii where  are you  ?  '));
+*/
+
+/*
+
+// Acronym generator
+
+function acronymGenerator(string){
+if (typeof string !== 'string') {
+    return 'enter valid string to process';
+}
+//let ignoreWords = ["and", "of", "in", "the"];
+let trimmedstr = string.trim().split(/\s+/);
+let acronym = trimmedstr.map(str => str[0].toUpperCase()).join('');
+return acronym;
+}
+
+console.log(acronymGenerator(' talk to you later'));
+
+*/
+
+
+/*
+//Random number- need clarity
+// built in method just gives value between o to 1. so made some calculations and then rounded it to near by integer.
+
+function getRandomNumber(min,max) {
+  return Math.floor(Math.random()* (max-min)); 
+}
+
+console.log(getRandomNumber(10,1000));
+*/
+/*
+
+//user name validator
+
+function userNameValidator(uname){
+
+    if (typeof uname !=='string'){
+        return 'enter valid string';
+    }
+if (uname.length <5 || uname.length>15) {
+    return 'error: user name must be 5-15 characters long';
+}
+const regex = /^[a-zA-Z0-9_]+$/ ; //^-starting of string, $ ending
+if (!regex.test(uname)){
+    return 'error uname can contain only the allowed characters';    
+}
+
+const regex2 = /^[a-zA-Z]/;
+if (!regex2.test(uname)){
+    return 'error:uname must start with a letter';
+}
+if (uname.endsWith('_')) {
+    return 'error:uname cannit ends with underscore    '
+}
+
+return true;
+}
+
+console.log(userNameValidator('Pranav_123'))
+*/
+/*
+//month name converter
+
+function monthName(monthNum){
+   
+    if (isNaN(monthNum) || monthNum>12 || monthNum <1){
+        return 'error'
+    }
+//arrays in javascripts indexed 0.
+    const months = ['Jan','feb','march','apr','may','jun',
+        'july','aug','sep','oct','nov','dec'];
+    return months[monthNum-1];
+    }
+
+console.log(monthName(12));
+
+/*
+
+
+
+// //month name converter - with built in method
+
+/*
+// need to work on the regex pattern- incomplete
+// sentence case converter
+
+
+function sentenceCaseConverter(string){
+    if (typeof string !== 'string'){
+        return 'error. enter valid input to process'
+    }
+
+}
+*/
+/*
+//Array Statistics - incomplete
+
+function getStatistics(numbers) {
+
+ if (!Array.isArray(numbers) || numbers.length === 0) {
+        return 'Error: Please provide a non-empty array of numbers';
+
+let sum = 0;
+let min = numbers [0];
+let max = numbers [0];
+let l = numbers.length;
+
+for (let i =0; i< l; i++){
+    let num = numbers [i];
+    sum += num;
+}
+
+}
+
+}
+
+*/
