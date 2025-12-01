@@ -889,7 +889,7 @@ if (isNaN(d1) || isNaN(d2)) {
     return 'Error: Invalid date format';
   }
 
-const diff = Math.abs (d2-d1);  //in milliseconds
+const diff = Math.abs (d2-d1);  //in milliseconds //aboslute positive value
 const diffdays= diff / (1000 * 60 * 60 * 24); //converting it to a day
 return (`Difference between given dates - ${diffdays}`);
 }
@@ -903,7 +903,7 @@ console.log (dateDifference ( '', '2025-11-28'));
 
 function timeConversion(time) {
 
-    let [H,M] = time.split(':').map(Number); //split is string function and tine is about numbers.
+    let [H,M] = time.split(':').map(Number); //split is string function and time is about numbers.
 
     if (isNaN(H) || isNaN(M) || H < 0 || H > 23 || M < 0 || M > 59) {
         return 'enter valid time';
@@ -1045,6 +1045,688 @@ function monthName(monthNum){
 
 console.log(monthName(12));
 
+*/
 /*
 
+//high order functions
 
+// map- to transform an array
+
+const array =[2,4,6,9,11];
+
+function add2 (x){
+    return x+2;
+}
+const array2 = array.map(add2) // add2 is the function added as parameter here.callback func
+// we shall directly add the function inside map parameter.
+console.log(array2);
+console.log(array);
+
+
+// filtering array - filter an array based on condition
+
+function filArray(y){
+    return y > 6;
+}
+const array3 =array.filter(filArray)
+
+console.log(array3);
+
+//reduce- tricky name- iterate the whole array with some function and come up with a single unit (reducing the array to one value)
+//reduce function takes 2 arguements (accumulator & current)
+
+const output =array.reduce(function (acc,curr){
+
+    //acc - result of each iteration 
+    //curr - current value in the iteration.
+    acc= acc+curr;
+    return acc;
+},0); //passing initial value as 0.
+
+console.log (output);
+
+*/
+
+/*
+//Problem 14: Array Statistics -count, sum, average,min,max,range
+
+function getStastics(num){
+      if (!Array.isArray(num) || num.length === 0) {
+    return 'Error: invlid input';
+      }
+
+let sum = 0;
+let max = num [0];
+let min = num [0];
+
+//for of loop iterate for each item in array.
+
+for (let x of num){
+     sum += x;
+    if (x < min) min = x;
+    if (x > max) max = x;
+}
+  const count = num.length;
+  const average = sum / count;
+  const range = max - min;
+
+  return { count, sum, average, min, max, range };
+}
+
+console.log (getStastics([17,25,380,400,250]));
+
+*/
+
+/*
+
+//Problem 13: Find Second Largest -pending
+
+// Birthday Countdown
+
+function birthdayCountdown(bdayDt){
+
+const bday = new Date(bdayDt);
+const today = new Date();
+
+if (isNaN (bday.getTime())){ // check if the date is valid 
+    return 'enter valid date.'
+}
+
+ // If birthday already passed this year, set to next year
+  if (bday < today) {
+    bday.setFullYear(today.getFullYear() + 1);
+  }
+const diffInMs = bday - today // difference in milliseconds
+
+// smallest integer greater than or equal to x.
+//4.4 days left is actually 5 days in real life days calculation.
+
+const diffDays = Math.ceil (diffInMs /(1000*60*60*24)) //partial day as full one
+return `${diffDays} days are left for your bday!`;
+}
+
+console.log(birthdayCountdown ('2026-09-09'));
+
+*/
+/*
+//Array Methods.
+
+toString()
+join()
+concat()
+splice()
+slice()
+indexOf()
+lastIndexOf()
+forEach()
+map()
+filter()
+reduce()
+some()
+every()
+flat()
+find()
+findIndex()
+sort()
+
+//converting it to a string.
+
+let Names =['Santhiya','Bala','Pranav','Iniyan'];
+
+let stringnames = Names.toString();
+
+console.log(stringnames);
+
+// Join method- We can specify separators
+
+let joinednames= Names.join('-');
+console.log(joinednames);
+
+// Concatenate
+
+let names2 =['Palani', 'Indira', 'Anushya', 'Natraj'];
+let concatNames = Names.concat(names2);
+console.log(concatNames);
+
+//splice -remove &/ update-start index,no of elements, / new elements if applicable
+//changes the original array-caution needed when using.
+
+let splicedNames = concatNames.splice(6,3,'Anushya','Natraj','Sai',);
+console.log(splicedNames);
+console.log(concatNames);
+
+//copying an array-spread operator...
+
+let copyNames= [...Names];
+console.log(copyNames);
+
+//Push to add item at the end of the array.
+names2.push('Mohan');
+//console.log (names2);
+
+//slice -index, end index is exclusive.here 2 is excluded and index 1 is sliced.
+//Does not change the actual array.
+let slicedNames= Names.slice (1,2);
+console.log(slicedNames);
+
+//Index of -first occurance
+
+let index = names2.indexOf('Natraj');
+//console.log (names2);
+//console.log (index);
+
+names2.push('laddoo');
+names2.push('Brownie');
+names2.push ('Anushya');
+
+
+// last index- final occurance of the element.
+
+let names2 =['Palani', 'Indira', 'Anushya', 'Natraj'];
+names2.push ('Anushya');
+let lastindex = names2.lastIndexOf('Anushya');
+let index1 = names2.indexOf('Anushya');
+console.log(lastindex);
+console.log(index1);
+console.log (names2);
+
+
+
+// flat- to flatten the nested array
+
+let nestedNames =['Palani', 'Indira', ['Anushya', 'Natraj'],['Brownie','laddoo']];
+console.log(nestedNames);
+
+let flatNames= nestedNames.flat();
+console.log(flatNames);
+
+*/
+
+
+//high order functions
+//foreach- to loop over an 
+
+
+//Multiplication Table
+
+/*
+function multiplicationTable (n,upto) {
+
+    if (typeof n !== 'number' || typeof upto !== 'number' || n===0 || upto === 0) {
+
+        console.error('Give valid inputs to generate table');
+    }
+    let table =[];
+    for (let i =1 ; i<= upto; i++){
+    table.push ({multiplicand: n, multiplier: i, product: n * i});
+    }
+    return table;
+}
+
+console.log(multiplicationTable (10,10));
+*/
+/*
+//multiplication Table
+
+function multitable(x,upto){
+
+    if (typeof x !== 'number'|| typeof upto !=='number') {
+        return 'Error: enter valid numbers'
+    }
+    
+    let table =[];
+    for (let i=1 ;i<=upto ; i++){
+    table.push(x*i);
+    }
+    
+    return table;
+
+}
+
+console.log (multitable(5,10));
+
+*/
+
+/*
+// variables
+
+let name = 'Santhiya';
+let age = 25;
+let city ='Chennai'
+
+console.log(`Hi this is ${name} my age is ${age} and i live in ${city}!`);
+*/
+
+//swap variables with out using 3rd one.
+/*
+let a =10;
+let b =15;
+
+console.log (`before swap values of ${a} & ${b}`);
+
+    a = a+b; // 25
+    b = a-b // 10
+    a = a-b //15
+ 
+    console.log (`after swap values of ${a} & ${b}`);
+
+//destructuring
+
+let a = 10, b = 15;
+[a, b] = [b, a];
+console.log(a, b); // 15, 10
+
+*/
+/*
+//Even or odd
+
+function evenOdd(num) {
+    if (num === undefined || typeof num !== 'number'){
+       return 'Error:enter valid input to process' }
+
+if (num%2 === 0){
+    return 'Given number is even';
+}
+
+return 'Given number is odd';
+}
+
+// return num % 2 === 0 ? 'Given number is even' : 'Given number is odd';
+
+console.log(evenOdd(15));
+
+*/
+/*
+//Find the largest of three numbers.
+
+function largestNum(a,b,c){
+
+    let largenum = Math.max(a,b,c);
+    return largenum;
+}
+
+console.log(largestNum(45,67,98));
+
+// extend to any numbers using spread operator ...
+
+function largestNum(...numbers) {
+  return Math.max(...numbers);
+}
+
+console.log(largestNum(45, 67, 98, 120, 5000));
+ */
+/*
+// leap year
+
+function leapYear(year){
+    if (typeof year !== 'number'){
+        return 'enter valid year to process';
+    }
+// && || precedence logic
+    if ((year%4 === 0 && year%100 !== 0) || year%400 === 0){
+        return 'its leap year'
+    }
+    return 'its not leap year'
+}
+
+console.log(leapYear(2007));
+
+*/
+/*
+// vowel or consonant
+
+function alphabetFinder(char){
+
+    if (typeof char !== 'string' || char.length !== 1){
+        return 'error enter valid character to process';
+    }
+
+    const vowels ='aeiou';
+    const lowerchar = char.toLowerCase();
+
+    if (vowels.includes(lowerchar)){
+        return 'it is a vowel'
+    }
+
+    return 'it is a consonant';
+}
+
+console.log(alphabetFinder('u'));
+*/
+/*
+//Write a program that grades students based on marks.
+
+function studentGrades(score){
+
+if (typeof score !== 'number'|| score >100 || score <0){
+
+    return 'error enter valid score'
+}
+
+if (score>=90){
+    return 'Grade A';
+}
+
+else if (score>=80){
+    return 'Grade B';
+}
+
+else if (score>=70){
+    return 'Grade C';
+}
+
+else if (score>= 60){
+    return 'Grade D' ;
+
+}
+
+// else is not required
+    return 'Grade F';
+}
+
+
+console.log(studentGrades(63));
+
+*/
+
+/*
+
+//Determine if a number is positive, negative, or zero.
+
+function signFinder(num){
+
+    if (typeof num !== 'number')
+        {return 'error enter a valid number to proceed'}
+
+let x = Math.sign(num);
+
+if (x === -1){console.log ('Given number is negative')};
+if (x === 1) {console.log ('Given number is positive')};
+if (x === 0) {console.log ('Given number is zero')};
+}
+
+console.log(signFinder(-1000));
+
+*/
+/*
+// Core Workout (Arrays & CRUD)
+
+let employees = ["Alice", "Bob", "Charlie"];
+
+employees.push ("Rob");
+employees.unshift ("Melissa");
+employees.splice(1,1);
+employees[2]= "Diana";
+
+console.log(employees);
+*/
+
+/*
+// array with positive negative and zeros
+
+let numbers = [10, -5, 0, 7, -3];
+
+let posNum_count = 0;
+let negNum_count = 0;
+let Zeros = 0;
+
+for (let num of numbers) {
+  let x = Math.sign(num);
+
+  if (x === -1) {
+    negNum_count++;
+    console.log(`${num} is negative`);
+  } else if (x === 1) {
+    console.log(`${num} is positive`);
+    posNum_count++;
+  } else if (x === 0) {
+    console.log(`${num} is zero`);
+    Zeros++;
+  }
+}
+*/
+/*
+//Print numbers from 1 to 10 using a loop.
+
+for (let i=1 ; i<=10 ; i++){
+    console.log(i);
+}
+*/
+/*
+//Print the multiplication table of a given number.
+
+function multitable (number, upto){
+let table = [];
+let result = 1
+
+for (let i=1;i<=upto; i++) {
+    result = i* number
+    table.push((result));
+}
+return table;
+}
+
+console.log (multitable(5,10));
+*/
+/*
+
+//Find the sum of numbers from 1 to n.
+
+function findSum(n){
+
+    let sum = 0;
+    for (let i=1; i<=n; i++){
+  sum = sum+i;
+    }
+    return sum;
+}
+
+    if (typeof n !== 'number' || n <0){return 'error: enter valid input'}
+*/
+/*
+//Reverse a given string using a loop.
+
+function reverseStr(str){
+
+    if (typeof str !== 'string')
+        {
+            return 'error enter a valid string'
+        }
+
+let revStr =''
+let len = str.length-1;
+let cleanedstr = str.toLowerCase().trim();
+
+for (let i= len ; i>=0; i--){
+    revStr += cleanedstr[i];
+}
+return revStr;
+}
+
+console.log(reverseStr("LondoN"));
+*/
+/*
+//Count the number of vowels in a string.
+
+function vowelCounter(str){
+     if (typeof str !== 'string')
+        {
+            return 'error enter a valid string'
+        }
+
+        let vowels ='aeiou'
+        let cleanedstr= str.toLowerCase().trim();
+        let count = 0
+        let len = cleanedstr.length-1
+
+        for (i=0 ;i<=len; i++){
+            if (vowels.includes(cleanedstr[i])){
+                count++
+            }
+        }
+        return `${count} vowels are present in the given string ${str}`;
+}
+
+console.log(vowelCounter('emily in paris'));
+*/
+/*
+//Find the largest number in an array.
+
+
+function findLargest(arr) {
+    if (!Array.isArray(arr) || arr.length === 0) {
+        return 'error: provide a non-empty array';
+    }
+
+    let largest = arr[0]; // start with the first element
+
+    for (let num of arr) {
+        if (num > largest) {
+            largest = num; // update if we find a bigger number
+        }
+    }
+
+    return largest;
+}
+   
+console.log(findLargest([10,678,5890]));
+
+*/
+/*
+
+//Reverse an array without using .reverse().
+
+function reverseArray(arr) {
+  if (!Array.isArray(arr)) {
+    return 'error: enter a valid array';
+  }
+
+  let reversed = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    reversed.push(arr[i]);
+  }
+  return reversed;
+}
+
+console.log(reverseArray([1, 2, 3, 4, 5])); 
+
+*/
+/*
+//Write a function to calculate factorial of a number.
+
+function factorial (n) {
+    
+    if (typeof n !== 'number' || n <0){
+        
+    return 'error: enter valid input'
+}
+
+let result =1;
+for (i=1 ; i<=n; i++){
+ result *= i;
+}
+return `factorial of ${n} is ${result}`;
+}
+
+console.log(factorial(10));
+*/
+
+//Write a function to generate a random number between two values.
+
+/*
+let x= Math.floor(Math.random() * 1000);
+console.log (x);
+*/
+/*
+function getRandomNumber(min, max) {
+  if (typeof min !== 'number' || typeof max !== 'number') {
+    return 'error: enter valid numbers';
+  }
+  if (min > max) {
+    return 'error: min should be less than max';
+  }
+//math.random rturns random value between 0 to 1. 
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+console.log(getRandomNumber(10, 1000)); // random number between 10 and 1000
+*/
+/*
+//remove duplicates from an array
+
+function removeDuplicates(arr) {
+  if (!Array.isArray(arr)) {
+    return 'error: enter a valid array';
+  }
+  return [...new Set(arr)]; // set - stores only unique values , ... converts it back into an array.
+}
+
+
+console.log(removeDuplicates([1,1,2,2,3,3,4,8,7,4,5]));
+*/
+/*
+// spread- unpacking an array or string. - we shall use this to create shallow copy of an array
+
+// largest in the array
+
+let num =[0,69,578,3400,3400,768,-879]
+let numcopy=[...num]; //copy the array
+
+let max= Math.max(...num);// ... operator unpacks the array into elements
+let min = Math.min(...num)
+console.log(max);
+console.log(min);
+console.log(num);
+console.log(numcopy);
+
+let fruits = ["apple", "orange", "banana"];
+let vegetables = ["carrots", "celery", "potatoes"];
+let foods = [...fruits, ...vegetables, "eggs", "milk"]; //concatenating an array
+
+console.log(foods);
+
+//spread = expands an array into separate elements
+// rest = bundles separate elements into an array
+*/
+/*
+//sorting an array in ascending order
+// Sorts elements as strings in lexicographic order, not alphabetical
+// lexicographic = (alphabet + numbers + symbols) as strings
+
+let num =[0,69,578,3400,3400,768,-879]
+
+//num.sort(); lexoicographic order-works for strings not for numbers
+// for numbers with sort compare arrow function must be combined.
+num.sort ((a,b) => a-b); //ascending
+num.sort((a, b) => b -a); //descending
+
+
+console.log(num);
+
+*/
+/*
+//lexoicographic order-works for strings not for numbers
+let veg =['brinjal','carrot','raddish','drumstick','pumpin','beetroot']
+veg.sort();
+veg.reverse()
+
+console.log(veg);
+
+*/
+
+/*
+//Array Statstics
+
+function getStatistics(num){
+
+    const max = Math.max(...num);
+    const min = Math.min (...num);
+
+    console.log (max)
+    console.log (min)
+
+    return {max,min}
+}
+
+console.log(getStatistics([10,20,30]));
+
+/*
