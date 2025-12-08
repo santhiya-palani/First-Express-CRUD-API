@@ -643,15 +643,15 @@ console.log (`Hi! my name is ${name} and i work as ${designation}.`)
 
 // when we accept user input it is string- it needs to be converted before we do any math.
 
-
 /*
+
 let age = window.prompt("How old are you?");
 age = Number(age); // converting the input to number otherwise addition wouldnt be possible.
 age+=1;
 
 console.log(age);
 
-*/
+/*
 
 /*
 
@@ -857,7 +857,7 @@ function validatePassword(password) {
     return 'Error: Password must be at least 8 characters long';
   }
 
-  // regex method use slashes and within square brackets the searcht terms.
+  // regex method use slashes and within square brackets the search terms.
   const hasNumber = /[0-9]/.test(password); //.test returns true or false.
   if (!hasNumber) {
     return 'Error: Password must contain at least one number';
@@ -1664,7 +1664,7 @@ function removeDuplicates(arr) {
 console.log(removeDuplicates([1,1,2,2,3,3,4,8,7,4,5]));
 */
 /*
-// spread- unpacking an array or string. - we shall use this to create shallow copy of an array
+// spread- unpacking an array or string. - we shall also use this to create shallow copy of an array
 
 // largest in the array
 
@@ -1714,7 +1714,7 @@ console.log(veg);
 */
 
 /*
-//Array Statstics
+//Array Statistics
 
 function getStatistics(num){
 
@@ -1729,4 +1729,370 @@ function getStatistics(num){
 
 console.log(getStatistics([10,20,30]));
 
+*/
 /*
+//count the no of alphabets in string.
+
+
+function countAlphabets(str){
+    let count = {} //going to store the counts as key value pair
+    let cleanedstr = str.trim().toLowerCase()
+    for (let char of cleanedstr){
+if (count[char]){
+    count[char]++
+}
+else{
+    count[char]=1;
+    }
+    }
+return count
+}
+
+console.log(countAlphabets("santhiya"))
+*/
+/*
+//remove duplicates/repeating letters
+let str ="good morning"
+const letters =new Set(str);
+console.log (letters);
+*/
+/*
+//string manipulation.
+
+let name = "santhiya palani "
+
+let firstname = name.slice(0,8);
+let firname= name.slice(0, name.indexOf(" "));
+let firchar =name.indexOf("a");
+let lastchar =name.lastIndexOf("a");
+let charat= name.charAt(5); 
+let uppercase=name.toUpperCase();
+let lcase=name.toLowerCase();
+let trimstr=name.trim();
+let repeatstr= name.repeat(3);
+
+
+console.log(firstname);
+console.log(firname);
+console.log(firchar);
+console.log(lastchar);
+console.log(charat);
+console.log(uppercase);
+console.log(lcase);
+console.log(trimstr);
+console.log(repeatstr)
+*/
+/*
+//fizzbuzz
+
+function fizzBuzz(n){
+
+for (let i= 1 ; i<=n; i++){
+if (i %3 === 0 && i%5 === 0){
+    console.log("fizz buzz!");
+}
+else if (i%3 === 0){
+    console.log ("Fizz");
+}
+else if(i%5 === 0){
+    console.log("buzz");
+}
+else{
+    console.log(i);
+}
+}
+}
+
+console.log(fizzBuzz(100));
+
+*/
+/*
+// string reversal
+
+function stringReversal(str){
+
+    let cleanedStr= str.trim().toLowerCase();
+    return cleanedStr.split("").reverse().join("");
+}
+
+console.log(stringReversal(" Hello world "));
+*/
+/*
+// without inbuilt method
+
+function reverseStr(string){
+
+    let revString = ""
+    let len =string.length-1;
+
+    for (i=len; i>=0; i--){
+        revString +=string[i];
+    }
+
+    return revString;
+}
+
+console.log(reverseStr("i love javascript"));
+*/
+
+/*
+//capitalize letter
+
+
+function capitalizeLetters(str){
+   let strArr = str.toLowerCase().split(" ") //spiliting each word as array element with space.
+   for (let i = 0; i<strArr.length; i++){
+
+    // substring-first parameter starting index, second parameter length of the extracted part
+    //If you omit the second parameter, substring() will slice out the rest of the string.
+   //concatenating with remaining part of array.
+
+strArr[i]= strArr[i].substring(0,1).toUpperCase()+strArr[i].substring(1)}
+return strArr.join(" ");
+}
+
+console.log(capitalizeLetters("i love to drive CAR!!"))
+
+*/
+/*
+// count the max characters in the string
+
+function countChar(str){
+
+   let countArr = {}; //initalizing an empty object. key value pair
+
+   let maxNum = 0;
+   let maxChar= 0;
+
+   str.split("").forEach(function(char){ // splitting the string into array and using foreach
+    if(countArr[char]){
+        countArr[char]++;
+    }
+    else{
+        countArr[char]= 1; // initalizing for new characters in the string
+    }
+   })
+  for(let char in countArr){ //for in loop to iterate over object
+  if (countArr[char] > maxNum){
+    maxNum = countArr[char];
+    maxChar= char;
+  }
+  }
+  return {maxChar,maxNum};
+}
+
+console.log(countChar("i love javascripttttt"))
+
+*/
+
+
+/*
+//printing alteranate alphabets
+// ASCII codes for A-Z 65-90 -character encoding system.
+
+
+for( let i = 65; i<=90; i+=2){
+    console.log(String.fromCharCode(i)); 
+
+}
+
+for (let i = 97; i <= 122; i += 2) {  
+  console.log(String.fromCharCode(i));
+}
+*/
+/*
+//printing even numbers
+
+for(let i =2; i<=100; i++){
+    if(i%2 === 0){
+        console.log(i);
+    }
+}
+
+//printing Odd numbers
+
+for(let i =1; i<=100; i++){
+    if(i%2 !== 0){
+        console.log(i);
+    }
+}
+
+*/
+
+// reverse a string
+
+// function reverseStr(str){
+//     //return str.trim().toLowerCase().split("").reverse().join("");
+//  let result = ""
+//     for (let i = str.length-1; i>=0; i--){
+//         result += str[i]
+//     }
+//     return result;
+// }
+
+// console.log(reverseStr(" My kids mean the world to me!"))
+// ;
+
+
+// //longest word in the sentence
+
+// function longestWordFinder(sent){
+//     let wordArray = sent.split(" ");
+//     //let result = {} //creating an object( key value pair to store the lengths)
+//     let longestWord=""
+//     for(word of wordArray){
+//    if (word.length > longestWord.length){
+//     longestWord= word;
+//    }
+//     }
+//     return longestWord;
+// }
+
+
+// console.log(longestWordFinder("Lets go and watch sunrise!"));
+
+// //palindrome checker
+
+// function palindromeChecker(str){
+
+//     let cleanedStr = str.trim().toLowerCase(); //cleaning the string separately so matching it against would yield the corret results.
+//     let reversedStr=cleanedStr.split("").reverse().join("");
+//     return cleanedStr===reversedStr;
+// }
+
+// console.log(palindromeChecker(" RaCeCaR "));
+// console.log(palindromeChecker(" MalayAlam"));
+// console.log(palindromeChecker("hello"));
+
+
+// //removing duplicate elments from an array
+// function removeDuplicates(arr){
+// //return cleanedArr = [...new Set(arr)]; // set stores only unique elements.
+
+// let cleanedArr=[];
+// for(i=0; i<arr.length;i++){
+//     if( cleanedArr.indexOf(arr[i])=== -1) //if the element is not avilable index would be -1.
+//         cleanedArr.push(arr[i]);
+// }
+// return cleanedArr;
+// }
+
+
+// console.log(removeDuplicates([1,2,3,1,2,3,4,4,5,1,0,40]));
+
+//anagrams
+
+// function anagramsFinder(str1,str2){
+//     cleanedStr1=str1.toLowerCase().split("").sort().join(""); // sort ->for strings alphabetical order for numbers dictionary order.
+//     cleanedStr2=str2.toLowerCase().split("").sort().join("");
+    
+//     return cleanedStr1 === cleanedStr2;
+// }
+
+// console.log(anagramsFinder("LiSten","SilEnt"));
+// console.log(anagramsFinder("mad","dam"));
+// console.log(anagramsFinder("earth","heart"));
+
+// //count vowels and consonants
+
+// function vowelsCounter(str){
+
+//     let vowelCount = 0;
+//     let vowels =["a","e","i","o","u"]
+//     let cleanedStr = str.toLowerCase();
+
+//     for(let i=0; i<str.length;i++){
+// if (vowels.includes(cleanedStr[i])){
+//         vowelCount++
+//     }
+// }
+// return vowelCount
+// }
+// console.log(vowelsCounter("helloworld"))
+
+// convert 24 hour format to 12 hour
+
+// function convertTime(inputTime){
+
+//     let [hours,mins] =inputTime.split(":").map(Number) // destructuring, splitting and converting it to a num.
+
+//     let period = hours >=12 ? "PM" : "AM" //ternary operator
+//     hours = hours%12; 
+//     if (hours===0) {hours=12} // edgecase handling.
+//     return `${hours}:${mins.toString().padStart(2, "0")} ${period}`;//converting as string to use the string operation padding.
+// }
+// console.log(convertTime("12:00"));
+
+//num range
+
+// function numRangeSum(num1,num2){
+
+//     if (num1>num2){
+//         return 'error: enter valid number range'
+//     }
+    
+// let result = 0
+//     for (let i =num1; i<=num2; i++){
+//       result+=i;
+//     }
+//     return result;
+// }
+
+// console.log(numRangeSum(5,10));
+
+// digit calculator
+
+// function digitCalc(num){
+
+// let numString =num.toString(); //converting it to string to use the digit advantage
+// let len = numString.length;
+// let result =0;
+
+// for (i=0; i<len; i++){
+// result += Number(numString[i]); //converting back as number to use matheatical operation addition.
+// }
+// return result;
+// }
+
+// console.log(digitCalc(123456789));
+
+// //perfect squarechecker
+
+// function squareChecker(num){
+
+//     let result = Math.sqrt(num);
+//     return Number.isInteger(result);
+//     }
+
+//     console.log(squareChecker(20));
+//     console.log(squareChecker(16));
+//     console.log(squareChecker(100));
+
+//user name validator
+
+// function userNameValidator(uname){
+
+//     if (typeof uname !=='string'){
+//         return 'enter valid string';
+//     }
+// if (uname.length <5 || uname.length>15) {
+//     return 'error: user name must be 5-15 characters long';
+// }
+// const regex = /^[a-zA-Z0-9_]+$/ ; //+anyof it $-end of the string
+// if (!regex.test(uname)){
+//     return 'error uname can contain only the allowed characters';    
+// }
+
+// const regex2 = /^[a-zA-Z]/; // ^start of the string
+// if (!regex2.test(uname)){
+//     return 'error:uname must start with a letter';
+// }
+// if (uname.endsWith('_')) {
+//     return 'error:uname cannot end with underscore    '
+// }
+
+// return true;
+// }
+
+// console.log(userNameValidator("santhiya123"))
+
